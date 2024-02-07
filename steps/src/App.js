@@ -23,10 +23,13 @@ export default function App() {
   }
 
   return (
-    <div>
-      <button className="close" onClick={handleIsOpen}>
-        &times;
-      </button>
+    <>
+      <div>
+        {" "}
+        <button className="close" onClick={handleIsOpen}>
+          &times;
+        </button>
+      </div>
       {isOpen && (
         <div className="steps">
           <div className="numbers">
@@ -55,6 +58,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
