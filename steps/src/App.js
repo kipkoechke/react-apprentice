@@ -10,14 +10,29 @@ export default function App() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
 
+  /**
+   * Decrements the step state variable by 1 if it is greater than 1.
+   *
+   * @return {void} This function does not return anything.
+   */
   function handlePrevious() {
     if (step > 1) setStep((s) => s - 1);
   }
 
+  /**
+   * Increments the step state variable by 1 if it is less than 3.
+   *
+   * @return {void} This function does not return anything.
+   */
   function handleNext() {
     if (step < 3) setStep((s) => s + 1);
   }
 
+/**
+ * Toggles the value of `isOpen` state variable.
+ *
+ * @return {void} No return value.
+ */
   function handleIsOpen() {
     setIsOpen((is) => !is);
   }
