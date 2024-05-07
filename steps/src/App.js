@@ -28,11 +28,11 @@ export default function App() {
     if (step < 3) setStep((s) => s + 1);
   }
 
-/**
- * Toggles the value of `isOpen` state variable.
- *
- * @return {void} No return value.
- */
+  /**
+   * Toggles the value of `isOpen` state variable.
+   *
+   * @return {void} No return value.
+   */
   function handleIsOpen() {
     setIsOpen((is) => !is);
   }
@@ -58,21 +58,24 @@ export default function App() {
           </p>
 
           <div className="buttons">
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handlePrevious}
-            >
-              Previous
-            </button>
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+            <Button
+              onClick={handlePrevious} 
+              ><span>👈</span>Previous</Button>
+              
+            <Button
               onClick={handleNext}
-            >
-              Next
-            </button>
+               > Next <span>👉</span></Button>
           </div>
         </div>
       )}
     </>
   );
+}
+
+function Button({ bgColor = "#7950f2",  textColor="#fff", onClick, children }) {
+  return <button
+    style={{ backgroundColor: bgColor, color: textColor }}
+    onClick={onClick}>
+    {children}
+  </button>
 }
