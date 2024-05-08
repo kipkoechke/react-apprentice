@@ -34,6 +34,13 @@ export default function App() {
    * @return {void} No return value.
    */
   function handleIsOpen() {
+    /**
+     * Takes the current `isOpen` state variable and negates its value.
+     * Then sets the new value of `isOpen` state variable.
+     *
+     * @param {boolean} is The current state of the `isOpen` variable.
+     * @return {boolean} The new value of the `isOpen` variable.
+     */
     setIsOpen((is) => !is);
   }
 
@@ -53,18 +60,20 @@ export default function App() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
+          {/* <p className="message">
             Step {step}: {messages[step - 1]}
-          </p>
+          </p> */}
 
           <div className="buttons">
-            <Button
-              onClick={handlePrevious} 
-              ><span>👈</span>Previous</Button>
-              
-            <Button
-              onClick={handleNext}
-               > Next <span>👉</span></Button>
+            <Button onClick={handlePrevious}>
+              <span>👈</span>Previous
+            </Button>
+
+            <Button onClick={handleNext}>
+              {" "}
+              Next <span>👉</span>
+            </Button>
           </div>
         </div>
       )}
@@ -72,10 +81,41 @@ export default function App() {
   );
 }
 
-function Button({ bgColor = "#7950f2",  textColor="#fff", onClick, children }) {
-  return <button
-    style={{ backgroundColor: bgColor, color: textColor }}
-    onClick={onClick}>
-    {children}
-  </button>
+/**
+ * The Button component renders a button element with customizable styles.
+ *
+ * @param {object} props - Component props
+ * @param {string} [props.bgColor] - The background color of the button.
+ * @param {string} [props.textColor] - The text color of the button.
+ * @param {Function} props.onClick - The event handler for when the button is clicked.
+ * @param {React.ReactNode} props.children - The content inside the button.
+ * @returns {JSX.Element} The rendered button element.
+ */
+function Button({
+  bgColor = "#7950f2",
+  textColor = "#fff",
+  onClick,
+  children,
+}) {
+  return (
+    // The button element
+    <button
+      // Style the button element with the given background color and text color
+      style={{ backgroundColor: bgColor, color: textColor }}
+      // When the button is clicked, call the onClick event handler
+      onClick={onClick}
+    >
+      {/* Render the button's content */}
+      {children}
+    </button>
+  );
+}
+
+function StepMessage({ step, children }) {
+  return (
+    <div className="message">
+      <h3>Step {step}</h3>
+      {children}
+    </div>
+  );
 }
