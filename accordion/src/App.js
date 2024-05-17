@@ -26,7 +26,7 @@ export default function App() {
 
 function Accordion({ data }) {
   return (
-    <div className="accordion">
+    <div className="w-[700px] mx-auto my-24 flex flex-col gap-6">
       {data.map((faq, num) => (
         <AccordionItem number={num} title={faq.title} text={faq.text} />
       ))}
@@ -40,8 +40,15 @@ function AccordionItem({ number, title, text }) {
     setIsOpen((isOpen) => !isOpen);
   }
   return (
-    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
-      <p className="number">{number < 9 ? `0${number}` : number + 1}</p>
+    <div
+      className={`px-6 py-5 pr-12 cursor-pointer border-y-4 border-y-[#fff] grid gap-x-6 gap-y-8 items-center grid-cols-[auto_1fr_auto] shadow-[0_0_30px_rgba(0,0,0,0.1)]  ${isOpen ? "open" : ""}`}
+      onClick={handleToggle}
+    >
+      <p
+        className={`${isOpen ? "text-[#087f5b]" : "text -[#ced4da]"} text-2xl font-medium`}
+      >
+        {number < 9 ? `0${number}` : number + 1}
+      </p>
       <p className="title">{title}</p>
       <p className="icon"> {isOpen ? "-" : "+"}</p>
 
