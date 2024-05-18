@@ -1,4 +1,4 @@
-import Navigation from "@/components/Navigation";
+import Navigation from "@/app/_components/Navigation";
 import Link from "next/link";
 
 export default function Page() {
