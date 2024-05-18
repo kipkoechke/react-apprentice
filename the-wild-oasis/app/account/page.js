@@ -1,3 +1,7 @@
 export default function Page() {
-  return <h1>Account Page!</h1>;
+  return (
+    <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+      Welcome, Bellon
+    </h2>
+  );
 }
