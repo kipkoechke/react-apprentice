@@ -38,7 +38,7 @@ export default function ComingSoon() {
   return (
     <div className="bg-[#000f1d] min-h-screen flex flex-col items-center justify-center">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-green-500 mb-4">chawabet</h1>
+        <h1 className="text-4xl font-bold text-green-500 mb-8">chawabet</h1>
         <h2 className="text-2xl font-semibold text-white mb-2">COMING SOON</h2>
         <p className="text-gray-400">
           We are preparing something amazing and exciting. We also have a
