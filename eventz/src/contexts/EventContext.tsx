@@ -6,12 +6,21 @@ import {
   use,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
 interface EventContextType {
   events: any[];
+  isLoading: boolean;
+  error: any;
+  searchTerm: string;
+  setSearchTerm: (searchTerm: string) => void;
+  filteredEvents: any[];
+  handleSubmit: () => void;
+  handleClearSearch: () => void;
 }
+
 export const EventContext = createContext<EventContextType | undefined>(
   undefined
 );
@@ -21,6 +30,36 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  // State to store search term
+  const [searchTerm, setSearchTerm] = useState("");
+  // State to store applied filters after submit
+  const [appliedFilters, setAppliedFilters] = useState({
+    searchTerm: "",
+  });
+
+  // Filtering events based on the applied filters
+  const filteredEvents = useMemo(() => {
+    return events.filter((event: any) => {
+      const matchesSearch = appliedFilters.searchTerm
+        ? event.title
+            .toLowerCase()
+            .includes(appliedFilters.searchTerm.toLowerCase())
+        : true;
+      return matchesSearch;
+    });
+  }, [events, appliedFilters]);
+  console.log(filteredEvents);
+
+  const handleSubmit = () => {
+    setAppliedFilters({ searchTerm });
+    console.log(events);
+  };
+
+  // Clearing the search term
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setAppliedFilters({ searchTerm: "" });
+  };
 
   // Fetching events from the server
   useEffect(() => {
@@ -44,7 +83,20 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
 
   // Providing the context value to children components
   return (
-    <EventContext.Provider value={{ events }}>{children}</EventContext.Provider>
+    <EventContext.Provider
+      value={{
+        events,
+        isLoading,
+        error,
+        searchTerm,
+        setSearchTerm,
+        filteredEvents,
+        handleSubmit,
+        handleClearSearch,
+      }}
+    >
+      {children}
+    </EventContext.Provider>
   );
 };
 
