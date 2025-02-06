@@ -16,7 +16,7 @@ export default {
       sm: "640px",
       md: "768px",
       lg: "1024px",
-      xl: "1310px",
+      xl: "1280px",
     },
     fontFamily: {
       primary: "var(--font-poppins)",
