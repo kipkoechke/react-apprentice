@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <div>
       <SearchBar />
-      {/* <div className="container mx-auto">
+      <div className="container mx-auto">
         <EventList />
-      </div> */}
+      </div>
     </div>
   );
 }

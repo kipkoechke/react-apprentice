@@ -1,6 +1,7 @@
 import { useEvents } from "@/contexts/EventContext";
 import React from "react";
 import Event from "./Event";
+import SkeletonGrid from "../skeleton/SkeletonGrid";
 
 const EventList = () => {
   const { filteredEvents, isLoading, error } = useEvents();
@@ -12,7 +13,7 @@ const EventList = () => {
     return <div>No events available</div>;
   }
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SkeletonGrid />;
   } else {
     return (
       <div>

@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 
+// Defining the EventContext type and providing the context value to children components
 interface EventContextType {
   events: any[];
   isLoading: boolean;
@@ -48,11 +49,13 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
       return matchesSearch;
     });
   }, [events, appliedFilters]);
-  console.log(filteredEvents);
 
   const handleSubmit = () => {
+    setIsLoading(true);
     setAppliedFilters({ searchTerm });
-    console.log(events);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
   };
 
   // Clearing the search term
@@ -100,6 +103,7 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// Custom hook to use the EventContext value in functional components
 export function useEvents() {
   const context = useContext(EventContext);
   if (!context) {
