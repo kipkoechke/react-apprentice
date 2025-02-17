@@ -20,6 +20,9 @@ interface EventContextType {
   filteredEvents: any[];
   handleSubmit: () => void;
   handleClearSearch: () => void;
+  showEventList: boolean;
+  selectedLocation: string;
+  setSelectedLocation: (selectedLocation: string) => void;
 }
 
 export const EventContext = createContext<EventContextType | undefined>(
@@ -31,11 +34,14 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showEventList, setShowEventList] = useState(false);
   // State to store search term
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   // State to store applied filters after submit
   const [appliedFilters, setAppliedFilters] = useState({
     searchTerm: "",
+    selectedLocation: "",
   });
 
   // Filtering events based on the applied filters
@@ -46,13 +52,19 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
             .toLowerCase()
             .includes(appliedFilters.searchTerm.toLowerCase())
         : true;
-      return matchesSearch;
+
+      const matchesLocation = appliedFilters.selectedLocation
+        ? event.location.toLowerCase() ===
+          appliedFilters.selectedLocation.toLocaleLowerCase()
+        : true;
+      return matchesSearch && matchesLocation;
     });
   }, [events, appliedFilters]);
 
   const handleSubmit = () => {
     setIsLoading(true);
-    setAppliedFilters({ searchTerm });
+    setShowEventList(true);
+    setAppliedFilters({ searchTerm, selectedLocation });
     setTimeout(() => {
       setIsLoading(false);
     }, 2500);
@@ -61,7 +73,8 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   // Clearing the search term
   const handleClearSearch = () => {
     setSearchTerm("");
-    setAppliedFilters({ searchTerm: "" });
+    setShowEventList(false);
+    setSelectedLocation("");
   };
 
   // Fetching events from the server
@@ -96,6 +109,9 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
         filteredEvents,
         handleSubmit,
         handleClearSearch,
+        showEventList,
+        selectedLocation,
+        setSelectedLocation,
       }}
     >
       {children}

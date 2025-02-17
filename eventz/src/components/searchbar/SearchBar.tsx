@@ -1,6 +1,7 @@
 import React from "react";
 import EventSearch from "./EventSearch";
 import { useEvents } from "@/contexts/EventContext";
+import EventLocation from "./EventLocation";
 
 function SearchBar() {
   const { handleSubmit } = useEvents();
@@ -9,7 +10,9 @@ function SearchBar() {
       <div>
         <EventSearch />
       </div>
-      <div>Event Location</div>
+      <div>
+        <EventLocation />
+      </div>
       <div>Event Date</div>
       <div>Event Type</div>
       <button className="btn btn-accent" onClick={handleSubmit}>
