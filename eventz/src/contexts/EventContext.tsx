@@ -1,13 +1,13 @@
 "use client";
-
 import {
   createContext,
   ReactNode,
-  use,
   useContext,
   useEffect,
   useMemo,
   useState,
+  Dispatch,
+  SetStateAction,
 } from "react";
 
 // Defining the EventContext type and providing the context value to children components
@@ -23,6 +23,10 @@ interface EventContextType {
   showEventList: boolean;
   selectedLocation: string;
   setSelectedLocation: (selectedLocation: string) => void;
+  selectedDate: Date | null;
+  setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+  selectedType: string;
+  setSelectedType: (selectedType: string) => void;
 }
 
 export const EventContext = createContext<EventContextType | undefined>(
@@ -35,18 +39,35 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showEventList, setShowEventList] = useState(false);
-  // State to store search term
+
+  // State to store filter inputs
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedType, setSelectedType] = useState("");
+
   // State to store applied filters after submit
-  const [appliedFilters, setAppliedFilters] = useState({
+  const [appliedFilters, setAppliedFilters] = useState<{
+    searchTerm: string;
+    selectedLocation: string;
+    selectedDate: Date | null;
+    selectedType: string;
+  }>({
     searchTerm: "",
     selectedLocation: "",
+    selectedDate: null,
+    selectedType: "",
   });
 
   // Filtering events based on the applied filters
   const filteredEvents = useMemo(() => {
+    const today = new Date();
+
     return events.filter((event: any) => {
+      // Check past events
+      const eventDate = new Date(event.date);
+      if (eventDate < today) return false;
+
       const matchesSearch = appliedFilters.searchTerm
         ? event.title
             .toLowerCase()
@@ -57,14 +78,29 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
         ? event.location.toLowerCase() ===
           appliedFilters.selectedLocation.toLocaleLowerCase()
         : true;
-      return matchesSearch && matchesLocation;
+
+      const matchesDate = appliedFilters.selectedDate
+        ? eventDate.toDateString() ===
+          appliedFilters.selectedDate.toDateString()
+        : true;
+
+      const matchesType = appliedFilters.selectedType
+        ? event.type.toLowerCase() === appliedFilters.selectedType.toLowerCase()
+        : true;
+
+      return matchesSearch && matchesLocation && matchesDate && matchesType;
     });
   }, [events, appliedFilters]);
 
   const handleSubmit = () => {
     setIsLoading(true);
     setShowEventList(true);
-    setAppliedFilters({ searchTerm, selectedLocation });
+    setAppliedFilters({
+      searchTerm,
+      selectedLocation,
+      selectedDate,
+      selectedType,
+    });
     setTimeout(() => {
       setIsLoading(false);
     }, 2500);
@@ -75,6 +111,8 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
     setSearchTerm("");
     setShowEventList(false);
     setSelectedLocation("");
+    setSelectedDate(null);
+    setSelectedType("");
   };
 
   // Fetching events from the server
@@ -112,6 +150,10 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
         showEventList,
         selectedLocation,
         setSelectedLocation,
+        selectedDate,
+        setSelectedDate,
+        selectedType,
+        setSelectedType,
       }}
     >
       {children}
