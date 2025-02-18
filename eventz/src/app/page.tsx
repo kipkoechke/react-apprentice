@@ -2,21 +2,16 @@
 
 import React from "react";
 import { useEvents } from "@/contexts/EventContext";
-import SearchBar from "@/components/searchbar/SearchBar";
-import Event from "@/components/events/Event";
 import EventList from "@/components/events/EventList";
+import Hero from "@/components/hero/Hero";
 
 export default function Home() {
-  const { showEventList, handleClearSearch } = useEvents();
+  const { showEventList } = useEvents();
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center">
-        <SearchBar />
-        <button className="text-accent" onClick={handleClearSearch}>
-          Clear Search
-        </button>
-      </div>
+      <Hero />
+      <div className="flex flex-col items-center justify-center"></div>
       {showEventList ? (
         <div className="container mx-auto">
           <EventList />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Caveat } from "next/font/google";
 import "./globals.css";
 import EventProvider from "@/contexts/EventContext";
+import Header from "@/components/header/Header";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -29,6 +30,7 @@ export default function RootLayout({
     <EventProvider>
       <html lang="en">
         <body className={`${poppins.variable} ${caveat.variable} antialiased`}>
+          <Header />
           {children}
         </body>
       </html>
