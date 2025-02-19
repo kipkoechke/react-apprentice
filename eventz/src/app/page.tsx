@@ -5,6 +5,8 @@ import { useEvents } from "@/contexts/EventContext";
 import EventList from "@/components/events/EventList";
 import Hero from "@/components/hero/Hero";
 import UpcomingEvents from "@/components/upcoming_events/UpcomingEvents";
+import RecommendedEvents from "@/components/recommended_events/RecommendedEvents";
+import DownloadApp from "@/components/download_app/DownloadApp";
 
 export default function Home() {
   const { showEventList } = useEvents();
@@ -25,9 +27,13 @@ export default function Home() {
               <UpcomingEvents />
             </div>
             {/* Download the app section */}
-            <div>Download the app section</div>
+            <div>
+              <DownloadApp />
+            </div>
             {/* Recommended events slider */}
-            <div>Recommended events slider</div>
+            <div>
+              <RecommendedEvents />
+            </div>
           </div>
         </div>
       )}

@@ -41,8 +41,6 @@ const UpcomingEvents = () => {
     filterEvents();
   }, [eventValue, events]);
 
-  console.log(eventValue);
-
   return (
     <section className="mb-16">
       <div className="mb-12 text-center">
