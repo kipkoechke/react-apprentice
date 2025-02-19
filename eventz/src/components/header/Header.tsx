@@ -15,7 +15,7 @@ const Header = () => {
               height={70}
             />
           </Link>
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             <div className="btn btn-tertiary">sign in</div>
             <div className="btn btn-accent">sign up</div>
           </div>

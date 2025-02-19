@@ -6,8 +6,8 @@ const Hero = () => {
   const { handleClearSearch } = useEvents();
   return (
     <section className="h-screen xl:h-[800px] mb-16 relative">
-      <div className="container mx-auto h-full flex flex-col justify-center items-center pt-80 xl:pt-0">
-        <div className="w-full max-w-[684px] text-center mx-auto gap-2">
+      <div className="container mx-auto h-full flex flex-col justify-center items-center pt-12 xl:pt-0">
+        <div className="w-full max-w-[684px] text-center flex flex-col mx-auto gap-2">
           <div className="pretitle">Uncover New Moments</div>
           <h1 className="h1">
             Discover events <br /> & Experiences
@@ -19,7 +19,7 @@ const Hero = () => {
         </div>
         <div>
           <SearchBar />
-          <div className="flex flex-col justify-center w-full mt-3 relative">
+          <div className=" w-full mt-3 relative flex flex-col justify-center">
             <p className="text-sm italic font-light text-white/70 text-center mb-2 xl:md-0">
               Please select one field or leave them empty to see all events.
             </p>

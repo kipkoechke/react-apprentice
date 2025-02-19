@@ -17,7 +17,7 @@ const EventList = () => {
     );
   }
   if (isLoading) {
-    return <SkeletonGrid />;
+    return <SkeletonGrid itemCount={filteredEvents.length} />;
   } else {
     return (
       <div>

@@ -2,11 +2,11 @@ import React from "react";
 import { Skeleton } from "../ui/skeleton";
 import { useEvents } from "@/contexts/EventContext";
 
-const SkeletonGrid = () => {
+const SkeletonGrid = ({ itemCount }: { itemCount: number }) => {
   const { events } = useEvents();
   return (
     <div className="w-full grid grid-cols-1 xl:grid-cols-4  gap-[30px] mb-32">
-      {Array.from({ length: events.length }).map((_, index) => {
+      {Array.from({ length: itemCount }).map((_, index) => {
         return (
           <div className="flex flex-col space-y-3" key={index}>
             <Skeleton className="h-[225px] rounded-xl" />

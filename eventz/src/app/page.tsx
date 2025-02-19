@@ -4,6 +4,7 @@ import React from "react";
 import { useEvents } from "@/contexts/EventContext";
 import EventList from "@/components/events/EventList";
 import Hero from "@/components/hero/Hero";
+import UpcomingEvents from "@/components/upcoming_events/UpcomingEvents";
 
 export default function Home() {
   const { showEventList } = useEvents();
@@ -20,7 +21,9 @@ export default function Home() {
         <div>
           <div className="container mx-auto">
             {/* Upcoming events slider */}
-            <div>Upcoming events slider</div>
+            <div>
+              <UpcomingEvents />
+            </div>
             {/* Download the app section */}
             <div>Download the app section</div>
             {/* Recommended events slider */}
