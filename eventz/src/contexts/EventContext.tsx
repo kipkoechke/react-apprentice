@@ -27,6 +27,7 @@ interface EventContextType {
   setSelectedDate: Dispatch<SetStateAction<Date | null>>;
   selectedType: string;
   setSelectedType: (selectedType: string) => void;
+  formatDate: (dateString: string) => string;
 }
 
 export const EventContext = createContext<EventContextType | undefined>(
@@ -115,6 +116,17 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
     setSelectedType("");
   };
 
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "short",
+      month: "short",
+      year: "numeric",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
+  };
+
   // Fetching events from the server
   useEffect(() => {
     const fetchEvents = async () => {
@@ -154,6 +166,7 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
         setSelectedDate,
         selectedType,
         setSelectedType,
+        formatDate,
       }}
     >
       {children}
