@@ -1,6 +1,7 @@
 import BuyTicket from "@/components/buy_ticket/BuyTicket";
 import CustomSelect from "@/components/custom_select/CustomSelect";
 import EventSchedule from "@/components/events/EventSchedule";
+import Organizers from "@/components/organizers/Organizers";
 import Timer from "@/components/timer/Timer";
 import Image from "next/image";
 import React from "react";
@@ -95,7 +96,9 @@ const EventDetails = async ({ params }) => {
                 </ul>
               </div>
             </div>
-            <div className="w-full max-w-[460px]">Organizers</div>
+            <div className="w-full max-w-[460px]">
+              <Organizers event={event} />
+            </div>
           </div>
         </div>
       </div>
