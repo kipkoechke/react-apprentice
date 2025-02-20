@@ -4,6 +4,7 @@ import "./globals.css";
 import EventProvider from "@/contexts/EventContext";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import TicketProvider from "@/contexts/TicketContext";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -29,13 +30,17 @@ export default function RootLayout({
 }>) {
   return (
     <EventProvider>
-      <html lang="en">
-        <body className={`${poppins.variable} ${caveat.variable} antialiased`}>
-          <Header />
-          {children}
-          <Footer />
-        </body>
-      </html>
+      <TicketProvider>
+        <html lang="en">
+          <body
+            className={`${poppins.variable} ${caveat.variable} antialiased`}
+          >
+            <Header />
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </TicketProvider>
     </EventProvider>
   );
 }
