@@ -1,7 +1,7 @@
 [build]
   base = "eventz"
   command = "npm run build"
-  publish = "eventz/.next"
+  publish = ".next"
 
 [[redirects]]
   from = "/*"
