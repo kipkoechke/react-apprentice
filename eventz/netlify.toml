@@ -1,10 +1,7 @@
 [build]
+  base = "eventz"
   command = "npm run build"
-  publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "18"
-  NEXT_PRIVATE_TARGET = "server"
+  publish = "eventz/.next"
 
 [[redirects]]
   from = "/*"
