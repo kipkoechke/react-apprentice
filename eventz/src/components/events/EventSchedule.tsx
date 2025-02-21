@@ -1,9 +1,10 @@
 "use client";
 import { useEvents } from "@/contexts/EventContext";
+import { EventDetails } from "@/types/types";
 import React from "react";
 import { BiCalendar, BiMap } from "react-icons/bi";
 
-const EventSchedule = ({ event }) => {
+const EventSchedule = ({ event }: { event: EventDetails }) => {
   const { formatDate } = useEvents();
   const dbDate = event.date;
   const formattedDate = formatDate(dbDate);

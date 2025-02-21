@@ -10,14 +10,44 @@ import React, {
   useState,
 } from "react";
 
+// Define the type for a seat
 interface Seat {
   seat: string | null;
   price: number | null;
 }
 
+// Define the type for a social link
+interface Social {
+  icon: string;
+  path: string;
+}
+
+// Define the type for an organizer
+interface Organizer {
+  img_avatar: string;
+  name: string;
+  job: string;
+  social: Social[];
+}
+
+// Define the type for an event
+interface Event {
+  id: string;
+  type: string;
+  img_sm: string;
+  img_lg: string;
+  date: string;
+  hour: string;
+  title: string;
+  location: string;
+  description: string;
+  seats: Seat[];
+  organizers: Organizer[];
+  recommended: boolean;
+}
 interface TicketData {
-  eventId: any;
-  eventName: any;
+  eventId: Event["id"];
+  eventName: Event["title"];
   ticketType: string | null;
   ticketPrice: number | null;
   amount: number;
@@ -25,7 +55,7 @@ interface TicketData {
 }
 
 interface TicketConextType {
-  event: any;
+  event: Event | null;
   seat: Seat;
   showMenu: boolean;
   itemAmount: number;
@@ -33,10 +63,10 @@ interface TicketConextType {
   setShowMenu: Dispatch<SetStateAction<boolean>>;
   setItemAmount: (itemAmount: number) => void;
   totalPrice: number;
-  handleSeat: ({ seat, price }: { seat: string; price: number }) => void;
-  buyNow: (event: any) => void;
+  handleSeat: ({ seat, price }: Seat) => void;
+  buyNow: (event: Event) => void;
   checkoutData: TicketData | null;
-  initializeEvent: (event: any) => void;
+  initializeEvent: (event: Event) => void;
   handleClickOutside: (e: MouseEvent) => void;
   increaseAmount: () => void;
   decreaseAmount: () => void;
@@ -48,14 +78,14 @@ export const TicketContext = createContext<TicketConextType | undefined>(
 
 const TicketProvider = ({ children }: { children: ReactNode }) => {
   // State to store tickets, loading state and error state
-  const [event, setEvent] = useState(null);
+  const [event, setEvent] = useState<Event | null>(null);
   const [seat, setSeat] = useState<Seat>({ seat: null, price: null });
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [itemAmount, setItemAmount] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [checkoutData, setCheckoutData] = useState<TicketData | null>(null);
 
-  const initializeEvent = (fetchedEvent: any) => {
+  const initializeEvent = (fetchedEvent: Event) => {
     setEvent(fetchedEvent);
 
     // reset item amount when a new event is initialized
@@ -63,7 +93,7 @@ const TicketProvider = ({ children }: { children: ReactNode }) => {
 
     // initialize the front seat if it exists in the fetched event data
     const frontSeat = fetchedEvent?.seats.find(
-      (seat: any) => seat.seat === "frontseat"
+      (seat: Seat) => seat.seat === "frontseat"
     );
     if (frontSeat) {
       setSeat({ seat: frontSeat.seat, price: frontSeat.price });
@@ -98,7 +128,7 @@ const TicketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // function to handle "Buy Now"
-  const buyNow = (event) => {
+  const buyNow = (event: Event) => {
     const ticketData = {
       eventId: event.id,
       eventName: event.title,

@@ -5,14 +5,17 @@ import Organizers from "@/components/organizers/Organizers";
 import Timer from "@/components/timer/Timer";
 import Image from "next/image";
 import React from "react";
-
 import { FaCheckCircle } from "react-icons/fa";
 
-const EventDetails = async ({ params }) => {
+const EventDetails = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
 
   // fetch event based on the id
-  const fetchEvent = async (id) => {
+  const fetchEvent = async (id: string) => {
     const res = await fetch(`http://localhost:8000/events/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch event");

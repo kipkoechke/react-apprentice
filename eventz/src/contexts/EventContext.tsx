@@ -1,4 +1,5 @@
 "use client";
+import { EventContextType, EventDetails } from "@/types/types";
 import {
   createContext,
   ReactNode,
@@ -6,29 +7,27 @@ import {
   useEffect,
   useMemo,
   useState,
-  Dispatch,
-  SetStateAction,
 } from "react";
 
 // Defining the EventContext type and providing the context value to children components
-interface EventContextType {
-  events: any[];
-  isLoading: boolean;
-  error: any;
-  searchTerm: string;
-  setSearchTerm: (searchTerm: string) => void;
-  filteredEvents: any[];
-  handleSubmit: () => void;
-  handleClearSearch: () => void;
-  showEventList: boolean;
-  selectedLocation: string;
-  setSelectedLocation: (selectedLocation: string) => void;
-  selectedDate: Date | null;
-  setSelectedDate: Dispatch<SetStateAction<Date | null>>;
-  selectedType: string;
-  setSelectedType: (selectedType: string) => void;
-  formatDate: (dateString: string) => string;
-}
+// interface EventContextType {
+//   events: Event[];
+//   isLoading: boolean;
+//   error: any;
+//   searchTerm: string;
+//   setSearchTerm: (searchTerm: string) => void;
+//   filteredEvents: any[];
+//   handleSubmit: () => void;
+//   handleClearSearch: () => void;
+//   showEventList: boolean;
+//   selectedLocation: string;
+//   setSelectedLocation: (selectedLocation: string) => void;
+//   selectedDate: Date | null;
+//   setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+//   selectedType: string;
+//   setSelectedType: (selectedType: string) => void;
+//   formatDate: (dateString: string) => string;
+// }
 
 export const EventContext = createContext<EventContextType | undefined>(
   undefined
@@ -38,7 +37,7 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   // State to store events, loading state and error state
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [showEventList, setShowEventList] = useState(false);
 
   // State to store filter inputs
@@ -64,7 +63,7 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   const filteredEvents = useMemo(() => {
     const today = new Date();
 
-    return events.filter((event: any) => {
+    return events.filter((event: EventDetails) => {
       // Check past events
       const eventDate = new Date(event.date);
       if (eventDate < today) return false;
@@ -132,15 +131,19 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
     const fetchEvents = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch("http://localhost:8000/events");
+        // const res = await fetch("http://localhost:8000/events");
+        const res = await fetch("/api/events");
+
         if (!res.ok) {
           throw new Error("Failed to fetch events");
         }
         const data = await res.json();
         setEvents(data);
         setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err);
+        }
         setIsLoading(false);
       }
     };

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { useEvents } from "@/contexts/EventContext";
 
 import Link from "next/link";
-import Image from "next/image";
 import Event from "../events/Event";
 import SkeletonGrid from "../skeleton/SkeletonGrid";
 

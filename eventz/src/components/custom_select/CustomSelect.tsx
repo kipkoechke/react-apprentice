@@ -1,15 +1,18 @@
 "use client";
 import { useTickets } from "@/contexts/TicketContext";
+import { Seat } from "@/types/types";
 import React, { useEffect } from "react";
 import { PiChairFill } from "react-icons/pi";
 
-const CustomSelect = ({ event }) => {
+import { EventDetails } from "@/types/types";
+
+const CustomSelect = ({ event }: { event: EventDetails }) => {
   const { seat, showMenu, setShowMenu, handleSeat, initializeEvent } =
     useTickets();
 
   useEffect(() => {
     initializeEvent(event);
-  }, []);
+  }, [event, initializeEvent]);
 
   return (
     <div
@@ -33,7 +36,7 @@ const CustomSelect = ({ event }) => {
       </div>
       {showMenu && (
         <ul className="bg-secondary absolute top-[70px] left-0 overflow-hidden w-full rounded-3xl h-[200px]">
-          {event.seats.map((seat, index) => (
+          {event.seats.map((seat: Seat, index: number) => (
             <li
               key={index}
               className="cursor-pointer hover:bg-white/5 px-8 py-5"

@@ -48,8 +48,10 @@ const EventLocation = () => {
         <BiMap />
       </div>
       <Select
-        value={selectedLocation}
-        onValueChange={(value) => setSelectedLocation(value)}
+        value={selectedLocation === "" ? "all" : selectedLocation}
+        onValueChange={(value) =>
+          setSelectedLocation(value === "all" ? "" : value)
+        }
       >
         <SelectTrigger className="bg-transparent border-none focus:ring-0 focus:ring-offset-0 text-left p-0">
           <SelectValue placeholder="Event Location" />
@@ -60,7 +62,7 @@ const EventLocation = () => {
             {uniqueLocations.map((location, index) => {
               return (
                 <SelectItem
-                  value={location === "All locations" ? null : location}
+                  value={location === "All locations" ? "all" : location}
                   key={index}
                 >
                   {location}

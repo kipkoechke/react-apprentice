@@ -23,8 +23,8 @@ const EventType = () => {
         <BiLayer />
       </div>
       <Select
-        value={selectedType ?? null}
-        onValueChange={(value) => setSelectedType(value)}
+        value={selectedType === "" ? "all" : selectedType}
+        onValueChange={(value) => setSelectedType(value === "all" ? "" : value)}
       >
         <SelectTrigger className="bg-transparent border-none focus:ring-0 focus:ring-offset-0 text-left p-0">
           <SelectValue placeholder="Event Type" />
@@ -35,7 +35,7 @@ const EventType = () => {
             {uniqueTypes.map((type, index) => {
               return (
                 <SelectItem
-                  value={type === "All type" ? null : type}
+                  value={type === "All type" ? "all" : type}
                   key={index}
                   className="capitalize"
                 >

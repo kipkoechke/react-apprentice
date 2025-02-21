@@ -1,9 +1,7 @@
 import React from "react";
 import { Skeleton } from "../ui/skeleton";
-import { useEvents } from "@/contexts/EventContext";
 
 const SkeletonGrid = ({ itemCount }: { itemCount: number }) => {
-  const { events } = useEvents();
   return (
     <div className="w-full grid grid-cols-1 xl:grid-cols-4  gap-[30px] mb-32">
       {Array.from({ length: itemCount }).map((_, index) => {

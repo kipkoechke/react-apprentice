@@ -1,15 +1,16 @@
+import { EventDetails, Organizer, Social } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Organizers = ({ event }) => {
+const Organizers = ({ event }: { event: EventDetails }) => {
   return (
     <div className="bg-secondary py-8 px-6 md:px-12 xl:px-16 w-full flex flex-col gap-8 rounded-2xl">
       <div>
         <div className="h3 mb-4">Organizers</div>
         <div className="w-[74px] h-[3px] bg-accent rounded-3xl"></div>
       </div>
-      {event.organizers.map((organizer: any, index: number) => {
+      {event.organizers.map((organizer: Organizer, index: number) => {
         return (
           <div
             key={index}
@@ -26,7 +27,7 @@ const Organizers = ({ event }) => {
                 <h4 className="text-lg font-medium">{organizer.name}</h4>
                 <p className="text-accent">{organizer.job}</p>
                 <div className="flex gap-4">
-                  {organizer.social.map((social: any, i: number) => {
+                  {organizer.social.map((social: Social, i: number) => {
                     return (
                       <Link key={i} href={social.path} target="_blank">
                         <Image

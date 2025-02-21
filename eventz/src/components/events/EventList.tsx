@@ -3,6 +3,7 @@ import React from "react";
 import Event from "./Event";
 import SkeletonGrid from "../skeleton/SkeletonGrid";
 import Link from "next/link";
+import { EventDetails } from "@/types/types";
 
 const EventList = () => {
   const { filteredEvents, isLoading, error } = useEvents();
@@ -24,7 +25,7 @@ const EventList = () => {
       <div>
         <h4 className="h4 mb-6">{filteredEvents.length} results found.</h4>
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-[30px] mb-32 ">
-          {filteredEvents.map((event: any, index) => {
+          {filteredEvents.map((event: EventDetails, index: number) => {
             return (
               <div key={index}>
                 <Link href={`/event/${event.id}`}>

@@ -1,9 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { EventDetails } from "@/types/types";
 
-const Timer = ({ event }) => {
+import React, { useEffect, useMemo, useState } from "react";
+
+const Timer = ({ event }: { event: EventDetails }) => {
   // calculate the target event date and time
-  const eventDate = new Date(`${event.date} ${event.hour}`);
+  const eventDate = useMemo(
+    () => new Date(`${event.date} ${event.hour}`),
+    [event.date, event.hour]
+  );
 
   // state to track the remaining time in milliseconds
   const [timeRemaining, setTimeRemaining] = useState(

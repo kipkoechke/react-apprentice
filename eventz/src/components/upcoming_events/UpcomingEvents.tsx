@@ -12,22 +12,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Event from "../events/Event";
 import SkeletonGrid from "../skeleton/SkeletonGrid";
-
-interface Event {
-  id: string;
-  type: string;
-  title: string;
-  img_sm: string;
-  date: string;
-  hour: string;
-  location: string;
-}
+import { EventDetails } from "@/types/types";
 
 const UpcomingEvents = () => {
   const { events } = useEvents();
   const [eventValue, setEventValue] = useState("all");
 
-  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<EventDetails[]>([]);
 
   useEffect(() => {
     const filterEvents = () => {
@@ -121,7 +112,7 @@ const UpcomingEvents = () => {
           modules={[Pagination]}
           className="w-full h-[500px]"
         >
-          {filteredEvents.map((event, index) => {
+          {filteredEvents.map((event: EventDetails, index: number) => {
             return (
               <SwiperSlide key={index} className="select-none">
                 <Link href={`/event/${event.id}`}>

@@ -1,22 +1,17 @@
 "use client";
 import { useTickets } from "@/contexts/TicketContext";
+import { EventDetails } from "@/types/types";
 import React from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 import { HiTicket } from "react-icons/hi";
 
-const BuyTicket = ({ event }) => {
+const BuyTicket = ({ event }: { event: EventDetails }) => {
   const { buyNow, itemAmount, totalPrice, increaseAmount, decreaseAmount } =
     useTickets();
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleBuyNow = () => {
-    console.log("Event:", event); // Debugging
-    if (!event) {
-      console.error("Error: event is undefined");
-      return;
-    }
-
     setIsLoading(true);
     buyNow(event);
     setTimeout(() => {

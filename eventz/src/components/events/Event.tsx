@@ -2,19 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { BiCalendar, BiTime, BiMap } from "react-icons/bi";
 import { useEvents } from "@/contexts/EventContext";
+import { EventDetails } from "@/types/types";
 
-interface EventProps {
-  event: {
-    title: string;
-    img_sm: string;
-    type: string;
-    date: string;
-    hour: string;
-    location: string;
-  };
-}
-
-const Event: React.FC<EventProps> = ({ event }) => {
+const Event = ({ event }: { event: EventDetails }) => {
   const { formatDate } = useEvents();
   const dbDate = event.date;
   const formattedDate = formatDate(dbDate);
