@@ -62,7 +62,7 @@ function Modal({ children }) {
   const open = setOpenName;
 
   return (
-    <ModalContext.Provider value={{ openName, open, close }}>
+    <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
   );
@@ -76,7 +76,7 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
-  const { ref } = useOutsideClick(close);
+  const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
 
