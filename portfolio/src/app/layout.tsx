@@ -1,3 +1,4 @@
+import Header from "@/components/header/Header";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jetBrainsMono.variable} antialiased`}>
+        <Header />
         {children}
       </body>
     </html>
