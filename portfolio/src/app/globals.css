@@ -44,4 +44,15 @@
   body {
     @apply bg-primary font-primary leading-loose text-white;
   }
+
+  .h1 {
+    @apply text-[48px] leading-[1.1] font-semibold xl:text-[80px];
+  }
+
+  .h2 {
+    @apply text-[36px] leading-[1.1] font-semibold xl:text-[48px];
+  }
+  .h3 {
+    @apply text-[20px] leading-[1.1] font-semibold xl:text-[24px];
+  }
 }
