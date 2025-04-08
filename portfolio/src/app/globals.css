@@ -55,4 +55,12 @@
   .h3 {
     @apply text-[20px] leading-[1.1] font-semibold xl:text-[24px];
   }
+
+  .service-num {
+    -webkit-text-stroke: 1px #ffffff;
+  }
+
+  .group:hover .service-num {
+    -webkit-text-stroke: 1px #00ff99;
+  }
 }
