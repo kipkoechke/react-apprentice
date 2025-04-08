@@ -13,7 +13,7 @@ export default function Home() {
           <div className="order-2 mb-8 text-center xl:order-none xl:mb-0 xl:text-left">
             <span className="text-xl">Software Developer</span>
             <h1 className="h1 mb-6">
-              Hello I'm <br />
+              Hello I&apos;m <br />
               <span className="text-accent">Kelvin Chepkwony</span>
             </h1>
             <p className="mb-9 max-w-[500px] text-white/80">

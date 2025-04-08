@@ -53,7 +53,7 @@ function Contact() {
             {/* form */}
             <div className="order-2 xl:order-none xl:w-[50%]">
               <form className="flex flex-col gap-6 rounded-xl bg-[#27272c] p-10">
-                <h3>Let's work together.</h3>
+                <h3>Let&apos;s work together.</h3>
                 <p className="mb-6 text-white/80">
                   I am always open to discussing product design work or
                   partnerships.
