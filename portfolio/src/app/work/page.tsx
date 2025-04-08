@@ -17,7 +17,22 @@ import "swiper/css/navigation"; // Optional: Navigation styles
 import "swiper/css/pagination"; // Optional: Pagination styles
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const projects = [
+interface Project {
+  num: string;
+  category: string;
+  title: string;
+  description: string;
+  stack: { name: string }[];
+  image: string;
+  live: string;
+  github: string;
+}
+
+interface SwiperInstance {
+  activeIndex: number;
+}
+
+const projects: Project[] = [
   {
     num: "01",
     category: "frontend",
@@ -72,7 +87,7 @@ const projects = [
 function Work() {
   const [project, setProject] = useState(projects[0]);
 
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper: SwiperInstance) => {
     const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
   };
