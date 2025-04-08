@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import Header from "@/components/layouts/Header";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Netours",
-  description: "Experience the amazing and classy tours in the world",
+export const metadata = {
+  title: "Netours | Exciting tours for adventurous people",
+  description: "Find your next adventure with Natours",
 };
 
 export default function RootLayout({
@@ -25,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`min-h-screen flex flex-col bg-gray-100 font-lato ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
+        <main className="flex-grow">{children}</main>
       </body>
     </html>
   );
