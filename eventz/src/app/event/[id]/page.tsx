@@ -1,30 +1,45 @@
+"use client";
+
 import BuyTicket from "@/components/buy_ticket/BuyTicket";
 import CustomSelect from "@/components/custom_select/CustomSelect";
 import EventSchedule from "@/components/events/EventSchedule";
 import Organizers from "@/components/organizers/Organizers";
 import Timer from "@/components/timer/Timer";
+import { fetchEventById } from "@/lib/event";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React from "react";
+import { useParams } from "next/navigation";
 import { FaCheckCircle } from "react-icons/fa";
 
-const EventDetails = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
-  const { id } = await params;
+const EventDetails = () => {
+  const params = useParams();
+  const id = params.id as string;
 
-  // fetch event based on the id
-  const fetchEvent = async (id: string) => {
-    const res = await fetch(`http://localhost:8000/events/${id}`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch event");
-    }
-    const data = await res.json();
-    return data;
-  };
+  const {
+    data: event,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["event", id],
+    queryFn: () => fetchEventById(id),
+    staleTime: 1000 * 60 * 10,
+  });
 
-  const event = await fetchEvent(id);
+  if (isLoading) {
+    return (
+      <div className="mx-auto container h-screen flex  justify-center items-center">
+        Loading
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error loading event: {(error as Error).message}</div>;
+  }
+
+  if (!event) {
+    return <div>Event not found</div>;
+  }
 
   return (
     <section className="min-h-screen flex items-center py-8 sm:py-48">

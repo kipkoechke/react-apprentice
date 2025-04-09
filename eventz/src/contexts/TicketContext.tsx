@@ -1,10 +1,11 @@
 "use client";
 
-import React, {
+import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -85,20 +86,21 @@ const TicketProvider = ({ children }: { children: ReactNode }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [checkoutData, setCheckoutData] = useState<TicketData | null>(null);
 
-  const initializeEvent = (fetchedEvent: Event) => {
+  // Memoize initializeEvent to prevent unnecessary re-renders
+  const initializeEvent = useCallback((fetchedEvent: Event) => {
     setEvent(fetchedEvent);
 
-    // reset item amount when a new event is initialized
+    // Reset item amount when a new event is initialized
     setItemAmount(1);
 
-    // initialize the front seat if it exists in the fetched event data
+    // Initialize the front seat if it exists in the fetched event data
     const frontSeat = fetchedEvent?.seats.find(
       (seat: Seat) => seat.seat === "frontseat"
     );
     if (frontSeat) {
       setSeat({ seat: frontSeat.seat, price: frontSeat.price });
     }
-  };
+  }, []);
 
   // Function to handle click outside of the menu to close it
   const handleClickOutside = (e: MouseEvent) => {

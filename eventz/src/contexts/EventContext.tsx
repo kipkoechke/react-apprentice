@@ -1,43 +1,14 @@
 "use client";
+import { fetchEvents } from "@/lib/events";
 import { EventContextType, EventDetails } from "@/types/types";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-
-// Defining the EventContext type and providing the context value to children components
-// interface EventContextType {
-//   events: Event[];
-//   isLoading: boolean;
-//   error: any;
-//   searchTerm: string;
-//   setSearchTerm: (searchTerm: string) => void;
-//   filteredEvents: any[];
-//   handleSubmit: () => void;
-//   handleClearSearch: () => void;
-//   showEventList: boolean;
-//   selectedLocation: string;
-//   setSelectedLocation: (selectedLocation: string) => void;
-//   selectedDate: Date | null;
-//   setSelectedDate: Dispatch<SetStateAction<Date | null>>;
-//   selectedType: string;
-//   setSelectedType: (selectedType: string) => void;
-//   formatDate: (dateString: string) => string;
-// }
+import { useQuery } from "@tanstack/react-query";
+import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 
 export const EventContext = createContext<EventContextType | undefined>(
   undefined
 );
 
 const EventProvider = ({ children }: { children: ReactNode }) => {
-  // State to store events, loading state and error state
-  const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
   const [showEventList, setShowEventList] = useState(false);
 
   // State to store filter inputs
@@ -57,6 +28,17 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
     selectedLocation: "",
     selectedDate: null,
     selectedType: "",
+  });
+
+  // Fetch events using React Query
+  const {
+    data: events = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["events"],
+    queryFn: fetchEvents,
+    staleTime: 1000 * 60 * 5,
   });
 
   // Filtering events based on the applied filters
@@ -93,7 +75,6 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   }, [events, appliedFilters]);
 
   const handleSubmit = () => {
-    setIsLoading(true);
     setShowEventList(true);
     setAppliedFilters({
       searchTerm,
@@ -101,9 +82,6 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
       selectedDate,
       selectedType,
     });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
   };
 
   // Clearing the search term
@@ -125,30 +103,6 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
     };
     return date.toLocaleDateString("en-US", options);
   };
-
-  // Fetching events from the server
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setIsLoading(true);
-      try {
-        // const res = await fetch("http://localhost:8000/events");
-        const res = await fetch("/api/events");
-
-        if (!res.ok) {
-          throw new Error("Failed to fetch events");
-        }
-        const data = await res.json();
-        setEvents(data);
-        setIsLoading(false);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err);
-        }
-        setIsLoading(false);
-      }
-    };
-    fetchEvents();
-  }, []);
 
   // Providing the context value to children components
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useTickets } from "@/contexts/TicketContext";
 import { EventDetails } from "@/types/types";
-import React from "react";
+import { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 import { HiTicket } from "react-icons/hi";
@@ -9,7 +9,7 @@ import { HiTicket } from "react-icons/hi";
 const BuyTicket = ({ event }: { event: EventDetails }) => {
   const { buyNow, itemAmount, totalPrice, increaseAmount, decreaseAmount } =
     useTickets();
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleBuyNow = () => {
     setIsLoading(true);

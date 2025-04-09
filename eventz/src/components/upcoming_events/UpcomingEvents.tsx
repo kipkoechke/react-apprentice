@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { useEvents } from "@/contexts/EventContext";
 import { Pagination } from "swiper/modules";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { useEvents } from "@/contexts/EventContext";
 
-import Link from "next/link";
+import { EventDetails } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 import Event from "../events/Event";
 import SkeletonGrid from "../skeleton/SkeletonGrid";
-import { EventDetails } from "@/types/types";
 
 const UpcomingEvents = () => {
   const { events } = useEvents();
@@ -63,7 +63,7 @@ const UpcomingEvents = () => {
               />
               Music
             </TabsTrigger>
-            <TabsTrigger value="sports" onClick={() => setEventValue("sports")}>
+            <TabsTrigger value="sport" onClick={() => setEventValue("sport")}>
               <Image
                 src="/assets/upcoming/sport.svg"
                 width={18}

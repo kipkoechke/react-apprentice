@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import { Poppins, Caveat } from "next/font/google";
-import "./globals.css";
-import EventProvider from "@/contexts/EventContext";
-import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import TicketProvider from "@/contexts/TicketContext";
+import Header from "@/components/header/Header";
+import Providers from "@/lib/provider";
+import type { Metadata } from "next";
+import { Caveat, Poppins } from "next/font/google";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -29,18 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <EventProvider>
-      <TicketProvider>
-        <html lang="en">
-          <body
-            className={`${poppins.variable} ${caveat.variable} antialiased`}
-          >
-            <Header />
-            {children}
-            <Footer />
-          </body>
-        </html>
-      </TicketProvider>
-    </EventProvider>
+    <Providers>
+      <html lang="en">
+        <body className={`${poppins.variable} ${caveat.variable} antialiased`}>
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </Providers>
   );
 }
