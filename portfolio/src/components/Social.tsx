@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
 
 const socials = [
   { icon: <FaGithub />, path: "https://github.com/kipkoechke" },
@@ -7,7 +8,11 @@ const socials = [
     icon: <FaLinkedin />,
     path: "https://www.linkedin.com/in/kipkoechke/",
   },
-  { icon: <FaTwitter />, path: "https://x.com/kipkoechke" },
+  // { icon: <FaTwitter />, path: "https://x.com/kipkoechke" },
+  {
+    icon: <IoMdMail />,
+    path: "https://mail.google.com/",
+  },
 ];
 
 function Social({

@@ -49,35 +49,25 @@ const experience = {
     " I have worked on various companies and projects, ranging from small personal websites to large-scale applications. My experience includes both frontend and backend development, and I am proficient in a variety of programming languages and frameworks.",
   items: [
     {
-      company: "Devlogic Softwar Ltd.",
+      company: "Devlogic Software Ltd.",
       position: "Front-End Developer",
-      duration: "2022 - Present",
+      duration: "2023 - 2025",
     },
 
     {
-      company: "Tech Innovations",
-      position: "Backend Developer",
-      duration: "2020 - 2022",
+      company: "Kenya Tea Packers Ltd.",
+      position: "Front-End Developer",
+      duration: "2022 - 2023",
     },
     {
-      company: "Creative Solutions",
+      company: "Star Picks ",
+      position: "Mobile Developer",
+      duration: "2023",
+    },
+    {
+      company: "Freelancing",
       position: "Full Stack Developer",
-      duration: "2018 - 2020",
-    },
-    {
-      company: "Creative Solutions",
-      position: "Full Stack Developer",
-      duration: "2018 - 2020",
-    },
-    {
-      company: "Creative Solutions",
-      position: "Full Stack Developer",
-      duration: "2018 - 2020",
-    },
-    {
-      company: "Web Design Co.",
-      position: "Junior Developer",
-      duration: "2016 - 2018",
+      duration: "2020 - Present",
     },
   ],
 };
@@ -90,17 +80,18 @@ const education = {
     "I have a strong educational background in computer science and software engineering. I have completed various courses and certifications to enhance my skills and knowledge.",
   items: [
     {
+      institution: "ALX Africa",
+      degree: "Software Engineering Program",
+      duration: "2023 - 2024",
+    },
+    {
       institution: "University of Eastern Africa, Baraton",
       degree: "Bachelor of Science in Software Engineering",
       duration: "2018 - 2023",
     },
+
     {
-      institution: "ALX Africa",
-      degree: "Software Engineering Program",
-      duration: "2023 - 2023",
-    },
-    {
-      institution: "Coursera",
+      institution: "Udemy",
       degree: "React and Nextjs Developer",
       duration: "2022",
     },
@@ -169,7 +160,7 @@ function Resume() {
                 <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">
                   {experience.description}
                 </p>
-                <ScrollArea className="h-[400px] w-full rounded-md border border-white/20">
+                <ScrollArea className="h-[400px] w-full rounded-md">
                   <ul className="grid grid-cols-1 gap-[30px] lg:grid-cols-2">
                     {experience.items.map((experience, index) => {
                       return (
@@ -200,7 +191,7 @@ function Resume() {
                 <p className="mx-auto max-w-[600px] text-white/60 xl:mx-0">
                   {experience.description}
                 </p>
-                <ScrollArea className="h-[400px] w-full rounded-md border border-white/20">
+                <ScrollArea className="h-[400px] w-full rounded-md">
                   <ul className="grid grid-cols-1 gap-[30px] lg:grid-cols-2">
                     {education.items.map((education, index) => {
                       return (

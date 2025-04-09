@@ -36,53 +36,94 @@ const projects: Project[] = [
   {
     num: "01",
     category: "frontend",
-    title: "Project Title",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Cabins Management Admin",
+    description: `A modern hotel management system for staff to manage cabins, bookings, guests, and check-ins/check-outs. Features authentication, profile settings, CRUD operations, and a stats dashboard with charts for bookings, sales, and occupancy. Includes dark mode and app-wide configuration.`,
     stack: [
       { name: "React" },
-      { name: "Next.js" },
-      { name: "Tailwind CSS" },
-      { name: "TypeScript" },
+      { name: "Supabase" },
+      { name: "React Router" },
+      { name: "Styled Components" },
+      { name: "React Query" },
+      { name: "Context API" },
+      { name: "React Hook Form" },
+      { name: "Recharts" },
     ],
-    image: "/assets/work/thumb1.png",
-    live: "",
-    github: "",
+    image: "/assets/work/cabin-admin.png",
+    live: "https://cabins-oasis-admin.vercel.app/",
+    github:
+      "https://github.com/kipkoechke/react-apprentice/tree/main/24-the-wild-oasis-admin",
   },
   {
     num: "02",
-    category: "backend",
-    title: "Project Title",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    category: "fullstack",
+    title: "Cabins Booking Website",
+    description: `A modern hotel website where guests can browse and filter luxurious cabins, check booked dates, reserve stays, and manage their profiles. Features include authentication, reservation management, and shared Supabase backend synced with the admin app.`,
     stack: [
-      { name: "Node.js" },
-      { name: "Express" },
-      { name: "MongoDB" },
-      { name: "TypeScript" },
+      { name: "React" },
+      { name: "Nextjs" },
+      { name: "Supabase" },
+      { name: "Context Api" },
+      { name: "Tailwind CSS" },
     ],
-    image: "/assets/work/thumb2.png",
-    live: "",
-    github: "",
+    image: "/assets/work/cabin-user.png",
+    live: "https://wild-oasis-client.vercel.app",
+    github:
+      "https://github.com/kipkoechke/react-apprentice/tree/main/25-the-wild-oasis-client",
   },
   {
     num: "03",
-    category: "fullstack",
-    title: "Project Title",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    category: "frontend",
+    title: "Fitness Gym Website",
+    description: `A responsive and modern gym website built to showcase services, trainers, pricing plans, and client testimonials. Includes a smooth scrolling experience, animated counters, and a clean, bold design aesthetic ideal for fitness branding.`,
     stack: [
       { name: "React" },
-      { name: "Node.js" },
-      { name: "Express" },
-      { name: "MongoDB" },
-      { name: "TypeScript" },
+      { name: "Tailwind CSS" },
+      { name: "Framer Motion" },
+      { name: "Nextjs" },
     ],
-    image: "/assets/work/thumb3.png",
-    live: "",
-    github: "",
+    image: "/assets/work/gym.png",
+    live: "https://fitphysique-six.vercel.app/",
+    github:
+      "https://github.com/kipkoechke/react-apprentice/tree/main/fitphysique",
+  },
+  {
+    num: "04",
+    category: "fullstack",
+    title: "Events Platform",
+    description: `A sleek and dynamic event booking platform where users can explore upcoming and recommended events, filter by type, location, name, and date, and view detailed event pages with organizer info. Includes seat booking, countdown to event start, and a responsive, user-friendly UI.`,
+    stack: [
+      { name: "Next.js" },
+      { name: "TypeScript" },
+      { name: "Tailwind CSS" },
+      { name: "MongoDB" },
+      { name: "REST API" },
+      { name: "Framer Motion" },
+    ],
+    image: "/assets/work/thumb2.png",
+    live: "https://eventz-platform.vercel.app",
+    github: "https://github.com/kevin-dev/eventz-platform",
   },
 ];
+
+{
+  /* {
+    num: "02",
+    category: "frontend",
+    title: "Fast React Pizza",
+    description: `A pizza ordering app with a simple UI and real-time cart updates. Users can order multiple pizzas, provide GPS location for delivery, and optionally mark orders as priority (+20% fee). Orders are sent to the API and assigned unique IDs for tracking. No login required.`,
+    stack: [
+      { name: "React" },
+      { name: "React Router" },
+      { name: "Tailwind CSS" },
+      { name: "Redux" },
+      { name: "API Integration" },
+      { name: "Geolocation API" },
+    ],
+    image: "/assets/work/thumb2.png",
+    live: "https://fast-pizza-alpha.vercel.app/cart",
+    github: "https://github.com/kevin-dev/fast-react-pizza",
+  },*/
+}
 
 function Work() {
   const [project, setProject] = useState(projects[0]);
@@ -103,24 +144,27 @@ function Work() {
           ease: "easeIn",
         },
       }}
-      className="flex min-h-[80vh] flex-col justify-center py-12 xl:px-0"
+      className="flex min-h-[80vh] flex-col justify-center xl:px-0"
     >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row xl:gap-[30px]">
+        <div className="flex flex-col xl:flex-row xl:gap-[20px]">
           <div className="order-2 flex w-full flex-col xl:order-none xl:h-[460px] xl:w-[50%] xl:justify-between">
-            <div className="flex h-[50%] flex-col gap-[30px]">
+            <div className="flex h-[50%] flex-col gap-[20px]">
               <div className="group">
                 <div className="service-num cursor-pointer text-8xl leading-none font-extrabold text-transparent">
                   {project.num}
                 </div>
               </div>
-              <h2 className="text-[42px] leading-none font-bold text-white capitalize transition-all duration-500">
+              {/* <h2 className="text-[42px] leading-none font-bold text-white capitalize transition-all duration-500">
                 {project.category} project
+              </h2> */}
+              <h2 className="text-[42px] leading-none font-bold text-white capitalize transition-all duration-500">
+                {project.title}
               </h2>
-              <p className="mt-4 text-lg font-normal text-gray-400">
+              <p className="mt-2 text-lg font-normal text-gray-400">
                 {project.description}
               </p>
-              <ul className="flex gap-4">
+              <ul className="flex flex-wrap gap-1">
                 {project.stack.map((item, index) => (
                   <li key={index} className="text-accent text-xl">
                     {item.name}
@@ -132,7 +176,11 @@ function Work() {
               <div className="border border-white/20"></div>
 
               <div className="flex items-center gap-4">
-                <Link href={project.live}>
+                <Link
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="group flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded-full bg-white/5">
@@ -144,7 +192,11 @@ function Work() {
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
-                <Link href={project.github}>
+                <Link
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger className="group flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded-full bg-white/5">
@@ -170,16 +222,16 @@ function Work() {
                 <SwiperSlide key={index} className="w-full">
                   <div className="group relative flex h-[460px] items-center justify-center bg-pink-50/20">
                     {/* Overlay  */}
-                    <div className="absolute top-0 bottom-0 z-10 h-full w-full bg-black/10"></div>
+                    <div className="bg-primary/90 absolute top-0 bottom-0 z-10 h-full w-full"></div>
 
                     {/* Image */}
-                    <div className="relative h-full w-full">
+                    <div className="relative z-40 h-full w-full transition-transform duration-500 group-hover:scale-110">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
                         quality={100}
-                        className="object-cover"
+                        className="z-40 object-contain"
                       />
                     </div>
                   </div>
@@ -188,7 +240,7 @@ function Work() {
 
               {/* Slider buttons */}
               <WorkSliderBtns
-                containerStylyes="flex absolute gap-2 right-0 bottom-calc(50%_ - _20px) z-20 xl:bottom-0 w-full justify-between xl:w-max xl:justify-none"
+                containerStyles="flex absolute gap-2 right-0 bottom-calc(50%_ - _20px) z-20 xl:bottom-0 w-full justify-between xl:w-max xl:justify-none"
                 btnStyles="flex h-[44px] justify-center items-center text-[22px] w-[44px] cursor-pointer items-center justify-center text-primary bg-accent hover:bg-accent-hover"
                 iconStyles=""
               />

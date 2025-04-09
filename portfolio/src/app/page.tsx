@@ -2,6 +2,7 @@ import Photo from "@/components/Photo";
 import Social from "@/components/Social";
 import Stats from "@/components/Stats";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { FiDownload } from "react-icons/fi";
 
 export default function Home() {
@@ -27,8 +28,16 @@ export default function Home() {
                 variant="outline"
                 className="flex items-center gap-2 uppercase"
               >
-                <span>Download</span>
-                <FiDownload className="text-xl" />
+                <Link
+                  href="/files/kelvin-chepkwony-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="flex items-center gap-2"
+                >
+                  <span>Download CV</span>
+                  <FiDownload className="text-xl" />
+                </Link>
               </Button>
               <div className="mb-8 xl:mb-0">
                 <Social
