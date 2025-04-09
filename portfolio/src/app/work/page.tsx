@@ -99,9 +99,9 @@ const projects: Project[] = [
       { name: "REST API" },
       { name: "Framer Motion" },
     ],
-    image: "/assets/work/thumb2.png",
-    live: "https://eventz-platform.vercel.app",
-    github: "https://github.com/kevin-dev/eventz-platform",
+    image: "/assets/work/events.png",
+    live: "https://keventz.vercel.app/",
+    github: "https://github.com/kipkoechke/react-apprentice/tree/main/eventz",
   },
 ];
 
