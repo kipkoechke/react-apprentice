@@ -2,7 +2,7 @@ import { EventDetails } from "@/types/types";
 
 export async function fetchEventById(id: string) {
   const res = await fetch(
-    "https://raw.githubusercontent.com/kipkoechke/react-apprentice/refs/heads/main/db.json"
+    "https://raw.githubusercontent.com/kipkoechke/react-apprentice/refs/heads/main/eventz/db.json"
   );
 
   if (!res.ok) {

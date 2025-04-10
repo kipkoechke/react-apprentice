@@ -1,6 +1,6 @@
 export const fetchEvents = async () => {
   const res = await fetch(
-    "https://raw.githubusercontent.com/kipkoechke/react-apprentice/refs/heads/main/db.json"
+    "https://raw.githubusercontent.com/kipkoechke/react-apprentice/refs/heads/main/eventz/db.json"
   );
 
   if (!res.ok) {
