@@ -34,7 +34,7 @@ const about = {
     { fieldName: "Phone", fieldValue: "+25497900350" },
     { fieldName: "Experience", fieldValue: "5+ Years of Experience" },
     { fieldName: "Nationality", fieldValue: "Kenyan" },
-    { fieldName: "Email", fieldValue: "chepkwonyke2@gmail.com" },
+    { fieldName: "Email", fieldValue: "ckipkoechke@gmail.com" },
     { fieldName: "Freelance", fieldValue: "Available" },
     { fieldName: "Language", fieldValue: "English, Swahili" },
     { fieldName: "Address", fieldValue: "Nairobi, Kenya" },
