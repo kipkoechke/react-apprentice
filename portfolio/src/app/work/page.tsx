@@ -72,25 +72,10 @@ const projects: Project[] = [
   },
   {
     num: "03",
-    category: "frontend",
-    title: "Fitness Gym Website",
-    description: `A responsive and modern gym website built to showcase services, trainers, pricing plans, and client testimonials. Includes a smooth scrolling experience, animated counters, and a clean, bold design aesthetic ideal for fitness branding.`,
-    stack: [
-      { name: "React" },
-      { name: "Tailwind CSS" },
-      { name: "Framer Motion" },
-      { name: "Nextjs" },
-    ],
-    image: "/assets/work/gym.png",
-    live: "https://fitphysique-six.vercel.app/",
-    github:
-      "https://github.com/kipkoechke/react-apprentice/tree/main/fitphysique",
-  },
-  {
-    num: "04",
     category: "fullstack",
     title: "Events Platform",
-    description: `A sleek and dynamic event booking platform where users can explore upcoming and recommended events, filter by type, location, name, and date, and view detailed event pages with organizer info. Includes seat booking, countdown to event start, and a responsive, user-friendly UI.`,
+    description: `Developed a responsive event platform enabling users to explore, and  filter events by name, type, date, and location. Integrated seat booking, countdown timers, and event detail pages with organizer's information. Strengthened UI development skills, responsive design and filtering logic that mirrors real-world booking workflows.
+`,
     stack: [
       { name: "Next.js" },
       { name: "TypeScript" },
@@ -102,6 +87,22 @@ const projects: Project[] = [
     image: "/assets/work/events.png",
     live: "https://keventz.vercel.app/",
     github: "https://github.com/kipkoechke/react-apprentice/tree/main/eventz",
+  },
+  {
+    num: "04",
+    category: "frontend",
+    title: "Fitness Gym Website",
+    description: `Created a modern, responsive gym website to showcase services, trainers, pricing plans, and testimonials. Implemented smooth scrolling, animations, and strong visuals to enhance UX, focusing on responsive design and engaging UI components.`,
+    stack: [
+      { name: "React" },
+      { name: "Tailwind CSS" },
+      { name: "Framer Motion" },
+      { name: "Nextjs" },
+    ],
+    image: "/assets/work/gym.png",
+    live: "https://fitphysique-six.vercel.app/",
+    github:
+      "https://github.com/kipkoechke/react-apprentice/tree/main/fitphysique",
   },
 ];
 
