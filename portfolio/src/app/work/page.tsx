@@ -66,7 +66,7 @@ const projects: Project[] = [
       { name: "Tailwind CSS" },
     ],
     image: "/assets/work/cabin-user.png",
-    live: "https://wild-oasis-client.vercel.app",
+    live: "https://cabins-oasis.vercel.app/",
     github:
       "https://github.com/kipkoechke/react-apprentice/tree/main/25-the-wild-oasis-client",
   },
