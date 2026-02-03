@@ -50,7 +50,7 @@ const Footer = () => {
               <Image src={"/assets/footer/logo.svg"} alt="Logo" fill />
             </Link>
             <p className="text-sm">
-              Copyright &copy; 2025. All rights reserved.
+              Copyright &copy; 2026. All rights reserved.
             </p>
           </div>
         </div>
